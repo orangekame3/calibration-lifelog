@@ -18,9 +18,3 @@ USER appuser
 
 # install python dependencies
 RUN uv sync --no-dev
-
-# expose port
-EXPOSE 8000
-
-# run application
-CMD ["uv", "run", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
