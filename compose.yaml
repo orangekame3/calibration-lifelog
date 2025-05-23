@@ -4,9 +4,21 @@ services:
     env_file:
       - .env
     ports:
-      - "8000:8000"
+      - "9000:9000"
     environment:
       - API_KEY=${API_KEY}
-    command: uv run uvicorn app:app --host 0.0.0.0 --port 8000
+    command: uv run uvicorn src.app:app --host 0.0.0.0 --port 9000
     volumes:
       - .:/app
+    network_mode: host
+
+  tunnel:
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    env_file:
+      - .env
+    command:
+      - tunnel
+      - --no-autoupdate
+      - run
+    network_mode: host
