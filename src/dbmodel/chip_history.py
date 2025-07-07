@@ -55,7 +55,7 @@ class ChipHistoryDocument(Document):
     @classmethod
     def create_history(cls, chip_doc: ChipDocument) -> "ChipHistoryDocument":
         """Create a history record from a ChipDocument."""
-        today = pendulum.now(tz="Asia/Tokyo").format("YYYY-MM-DD")
+        today = pendulum.now(tz="Asia/Tokyo").format("YYYYMMDD")
         existing_history = cls.find_one(
             {
                 "chip_id": chip_doc.chip_id,
